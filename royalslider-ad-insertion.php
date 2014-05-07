@@ -98,3 +98,13 @@ slider.ev.on('rsAfterSlideChange', function( event, type, userAction ) {
 }
 
 add_action('new_rs_after_js_init_code', 'insert_ad_scripts');
+
+
+function plugin_activation_check() { 
+	if ( ! is_plugin_active( 'new-royalslider/newroyalslider.php' ) ) {
+		deactivate_plugins( basename( __FILE__ ) );
+		die( 'Cannot activate plugin. Royal Slider plugin is not active.' );
+	}
+}
+
+register_activation_hook( __FILE__, 'plugin_activation_check' ); 
